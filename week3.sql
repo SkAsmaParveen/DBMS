@@ -52,4 +52,39 @@ Kim                  Elec. Eng.           Taylor
 
 12 rows selected.
 
+3. Find the names of instructors who have taught at least one course
+
+
+
+SQL> SELECT DISTINCT i.name FROM instructor i, teaches t WHERE i.id=t.id;
+
+NAME
+--------------------
+Brandt
+Crick
+Einstein
+El Said
+Katz
+Kim
+Mozart
+Srinivasan
+Wu
+
+9 rows selected.
+
+
+4. For the student with ID 12345 (or any other value), show all course_id and title
+of all courses registered for by the student.
+
+SQL> select s.id, t.course_id, c.title from student s, takes t, course c where s.id = '12345' AND 
+s.id = t.id  AND t.course_id = c.course_id;
+
+ID    COURSE_I TITLE
+----- -------- --------------------------------------------------
+12345 CS-101   Intro. to Computer Science
+12345 CS-190   Game Design
+12345 CS-315   Robotics
+12345 CS-347   Database System Concepts
+
+
 
