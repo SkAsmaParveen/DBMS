@@ -73,8 +73,8 @@ Wu
 9 rows selected.
 
 
-4. For the student with ID 12345 (or any other value), show all course_id and title
-of all courses registered for by the student.
+4.    For the student with ID 12345 (or any other value), show all course_id and title
+      of all courses registered for by the student.
 
 SQL> select s.id, t.course_id, c.title from student s, takes t, course c where s.id = '12345' AND 
 s.id = t.id  AND t.course_id = c.course_id;
@@ -85,6 +85,29 @@ ID    COURSE_I TITLE
 12345 CS-190   Game Design
 12345 CS-315   Robotics
 12345 CS-347   Database System Concepts
+
+
+5. Find instructor names and course identifiers for instructors in the Computer
+   Science department.
+   
+   
+   
+   
+6. For all instructors in the university who have taught some course, find their
+names and the course ID of all courses they taught.
+7. Find the names of all instructors whose salary is greater than at least one
+instructor in the Biology department. Or Find the names of all instructors who
+earn more than the lowest paid instructor in the Biology department.
+8. Find full details of instructors who teach at least one course.
+9. Find the instructor names and the courses they taught for all instructors in the
+Biology department who have taught some course.
+10. Find the set of all courses taught either in Fall 2009 or in Spring 2010, or both.
+11. Find all courses taught in the Fall 2009 semester but not in the Spring 2010
+semester.
+12. Find the names of all students who have taken any Comp. Sci. course ever.
+(there should be no duplicate names)
+13. Display the IDs of all instructors who have never taught a course. (Don’t write
+nested query)
 
 
 
