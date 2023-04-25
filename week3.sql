@@ -111,6 +111,31 @@ ID    COURSE_I TITLE
    
 6. For all instructors in the university who have taught some course, find their
    names and the course ID of all courses they taught.
+   
+   SQL> select DISTINCT(i.name), t.course_id FROM instructor i, teaches t WHERE i.id = t.id;
+
+NAME                 COURSE_I
+-------------------- --------
+Brandt               CS-190
+Brandt               CS-319
+Crick                BIO-101
+Crick                BIO-301
+Einstein             PHY-101
+El Said              HIS-351
+Katz                 CS-101
+Katz                 CS-319
+Kim                  EE-181
+Mozart               MU-199
+Srinivasan           CS-101
+
+NAME                 COURSE_I
+-------------------- --------
+Srinivasan           CS-315
+Srinivasan           CS-347
+Wu                   FIN-201
+
+14 rows selected.
+
 
 
 
