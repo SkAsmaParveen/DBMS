@@ -92,9 +92,28 @@ ID    COURSE_I TITLE
    
    
    
+   SQL> select DISTINCT(i.name), t.course_id from instructor i, teaches t WHERE dept_name LIKE 'Comp. Sci.' AND i.id = t.id;
+
+  NAME                 COURSE_I
+-------------------- --------
+  Brandt               CS-190
+  Brandt               CS-319
+  Katz                 CS-101
+  Katz                 CS-319
+  Srinivasan           CS-101
+  Srinivasan           CS-315
+  Srinivasan           CS-347
+
+  7 rows selected.
+   
+   
+   
    
 6. For all instructors in the university who have taught some course, find their
-names and the course ID of all courses they taught.
+   names and the course ID of all courses they taught.
+
+
+
 7. Find the names of all instructors whose salary is greater than at least one
 instructor in the Biology department. Or Find the names of all instructors who
 earn more than the lowest paid instructor in the Biology department.
