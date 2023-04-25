@@ -140,8 +140,14 @@ Wu                   FIN-201
 
 
 7. Find the names of all instructors whose salary is greater than at least one
-instructor in the Biology department. Or Find the names of all instructors who
-earn more than the lowest paid instructor in the Biology department.
+   instructor in the Biology department. Or Find the names of all instructors who
+   earn more than the lowest paid instructor in the Biology department.
+
+
+   
+
+
+
 8. Find full details of instructors who teach at least one course.
 9. Find the instructor names and the courses they taught for all instructors in the
 Biology department who have taught some course.
