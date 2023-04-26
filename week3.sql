@@ -279,6 +279,14 @@ ID
 76543
    
 
+SQL> (SELECT id FROM instructor) MINUS (SELECT id FROM teaches);
+
+ID
+-----
+33456
+58583
+76543
+
 
    
 
