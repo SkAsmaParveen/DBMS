@@ -138,26 +138,116 @@ Wu                   FIN-201
 
 
 
-
 7. Find the names of all instructors whose salary is greater than at least one
    instructor in the Biology department. Or Find the names of all instructors who
    earn more than the lowest paid instructor in the Biology department.
+   
+   
+8. Find full details of instructors who teach at least one course.
 
 
    
+SQL>  SELECT DISTINCT i.* from instructor i,teaches t where i.id = t.id;
+
+ID    NAME                 DEPT_NAME                SALARY
+----- -------------------- -------------------- ----------
+10101 Srinivasan           Comp. Sci.                65000
+12121 Wu                   Finance                   90000
+15151 Mozart               Music                     40000
+22222 Einstein             Physics                   95000
+32343 El Said              History                   60000
+45565 Katz                 Comp. Sci.                75000
+76766 Crick                Biology                   72000
+83821 Brandt               Comp. Sci.                92000
+98345 Kim                  Elec. Eng.                80000
+
+9 rows selected.
 
 
-
-8. Find full details of instructors who teach at least one course.
 9. Find the instructor names and the courses they taught for all instructors in the
 Biology department who have taught some course.
+
+
+ 
+SQL> SELECT DISTINCT i.name from instructor i,teaches t WHERE i.id = t.id AND dept_name LIKE 'Comp. Sci.' ;
+
+NAME
+--------------------
+Brandt
+Katz
+Srinivasan
+
+SQL> 
+
+
 10. Find the set of all courses taught either in Fall 2009 or in Spring 2010, or both.
+
+
+SQL> SELECT t.course_id from teaches t WHERE (semester LIKE 'Fall' AND year = 2009) OR (semester LIK
+E 'Spring' AND year = 2010);
+
+COURSE_I
+--------
+CS-101
+CS-315
+CS-347
+FIN-201
+MU-199
+PHY-101
+HIS-351
+CS-101
+CS-319
+CS-319
+
+10 rows selected.
+
+
 11. Find all courses taught in the Fall 2009 semester but not in the Spring 2010
 semester.
+
+
+SQL> SELECT t.course_id from teaches t WHERE (semester LIKE 'Fall' AND year = 2009) OR NOT (semester
+ LIKE 'Spring' AND year = 2010);
+
+COURSE_I
+--------
+CS-101
+CS-347
+PHY-101
+BIO-101
+BIO-301
+CS-190
+CS-190
+EE-181
+
+8 rows selected.
+
 12. Find the names of all students who have taken any Comp. Sci. course ever.
 (there should be no duplicate names)
+
+
+SQL> SELECT DISTINCT s.name  from student s, takes t, course c WHERE c.dept_name = 'Comp. Sci.' 
+     AND s.id = t.id AND t.course_id = c.course_id;
+
+NAME
+--------------------
+Bourikas
+Brown
+Levy
+Shankar
+Williams
+Zhang
+
+6 rows selected.
+
+
 13. Display the IDs of all instructors who have never taught a course. (Don’t write
 nested query)
+   
+   
+
+
+   
 
 
 
