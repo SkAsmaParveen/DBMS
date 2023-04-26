@@ -142,6 +142,38 @@ Wu                   FIN-201
    instructor in the Biology department. Or Find the names of all instructors who
    earn more than the lowest paid instructor in the Biology department.
    
+
+SQL> SELECT name FROM instructor WHERE salary>(SELECT MIN(salary) FROM instructor WHERE dept_name LI
+KE 'Biology');
+
+NAME
+--------------------
+Wu
+Einstein
+Gold
+Katz
+Singh
+Brandt
+Kim
+
+7 rows selected.   
+
+
+
+SQL>  select i.name from instructor i,instructor s where s.dept_name = 'Biology' and i.salary > s.salary;
+
+NAME
+--------------------
+Wu
+Einstein
+Gold
+Katz
+Singh
+Brandt
+Kim
+
+7 rows selected.
+   
    
 8. Find full details of instructors who teach at least one course.
 
@@ -244,6 +276,15 @@ Zhang
 13. Display the IDs of all instructors who have never taught a course. (Don’t write
 nested query)
    
+   
+   
+SQL> select i.id from instructor i where not exists (select * from teaches t where t.id = i.id);
+
+ID
+-----
+33456
+58583
+76543
    
 
 
