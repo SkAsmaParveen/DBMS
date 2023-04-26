@@ -1,29 +1,21 @@
 1. Find all possible combinations of instructors and the courses they teach.
 
 
-SQL> select name,course_id from instructor,teaches where instructor.ID = teaches.id;
+SQL> SELECT i.id, i.name, c.course_id, c.title FROM instructor i, course c, teaches t WHERE i.id=t.i
+d AND t.course_id=c.course_id;
 
-NAME                 COURSE_I
--------------------- --------
-Srinivasan           CS-101
-Srinivasan           CS-315
-Srinivasan           CS-347
-Wu                   FIN-201
-Mozart               MU-199
-Einstein             PHY-101
-El Said              HIS-351
-Katz                 CS-101
-Katz                 CS-319
-Crick                BIO-301
-Brandt               CS-190
+ID    NAME                 COURSE_I
+----- -------------------- --------
+TITLE
+--------------------------------------------------
+10101 Srinivasan           CS-101
+Intro. to Computer Science
 
-NAME                 COURSE_I
--------------------- --------
-Brandt               CS-190
-Brandt               CS-319
-Kim                  EE-181
+10101 Srinivasan           CS-315
+Robotics
 
-14 rows selected.
+10101 Srinivasan           CS-347
+Database System Concepts
 
 
 2. Retrieve the names of all instructors, along with their department names and
