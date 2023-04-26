@@ -65,16 +65,57 @@ TOTALINSTRUCTORS TOTALCOURSES
 
 6. Find the average salary in each department.
 
+SQL> SELECT avg(salary) as AvgSalary from instructor GROUP BY dept_name;
+
+ AVGSALARY
+----------
+     72000
+77333.3333
+     80000
+     85000
+     61000
+     40000
+     91000
+
+7 rows selected.
 
 
 7. Find the number of instructors in each department who teach a course in
 the Spring 2010 semester.
+
+
+SQL>  SELECT COUNT(DISTINCT(id)) as TotalInstructors from teaches WHERE (semester LIKE 'Spring' AND 
+year = 2010) GROUP BY semester,year ;
+
+TOTALINSTRUCTORS
+----------------
+               6
+
+
 8. Find the department name and average salary of the department for only
 those departments where the average salary of the instructors is more than
 $42,000.
+
+
+SQL> select avg(salary) as AvgSalary, dept_name from instructor GROUP BY dept_name HAVING avg(salary
+) > 42000;
+
+ AVGSALARY DEPT_NAME
+---------- --------------------
+     72000 Biology
+77333.3333 Comp. Sci.
+     80000 Elec. Eng.
+     85000 Finance
+     61000 History
+     91000 Physics
+
+6 rows selected.
+
 9. For each course section offered in 2009, find the average total credits
 (tot_cred) of all students enrolled in the section, if the section had at least 2
 students.
+
+
 10. For each department, find the maximum salary of instructors in that
 department. You may assume that every department has at least one
 instructor.
