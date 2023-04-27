@@ -48,48 +48,48 @@ SQL> SELECT avg(salary) as AvgSalary from instructor WHERE dept_name = 'Comp. Sc
 5. Find the total number of instructors who teach a course in the Spring 2010
 semester.
 
-SQL> SELECT COUNT(DISTINCT(t.id)) as TotalInstructors, COUNT(DISTINCT(t.course_id)) as TotalCourses 
-FROM teaches t WHERE (semester LIKE 'Spring' AND year = 2010) GROUP BY course_id ;
+ SQL>  SELECT COUNT(DISTINCT id) as TotalInstructors  FROM teaches where semester = 'Spring' AND year
+ = 2010;
 
-TOTALINSTRUCTORS TOTALCOURSES
----------------- ------------
-               1            1
-               1            1
-               2            1
-               1            1
-               1            1
-               1            1
+TOTALINSTRUCTORS
+----------------
+               6
 
-6 rows selected.
 
 
 6. Find the average salary in each department.
 
-SQL> SELECT avg(salary) as AvgSalary from instructor GROUP BY dept_name;
+SQL> SELECT dept_name, avg(salary) as AvgSalary from instructor GROUP BY dept_name;
 
- AVGSALARY
-----------
-     72000
-77333.3333
-     80000
-     85000
-     61000
-     40000
-     91000
+DEPT_NAME             AVGSALARY
+-------------------- ----------
+Biology                   72000
+Comp. Sci.           77333.3333
+Elec. Eng.                80000
+Finance                   85000
+History                   61000
+Music                     40000
+Physics                   91000
 
 7 rows selected.
+
+SQL> 
 
 
 7. Find the number of instructors in each department who teach a course in
 the Spring 2010 semester.
 
 
-SQL>  SELECT COUNT(DISTINCT(id)) as TotalInstructors from teaches WHERE (semester LIKE 'Spring' AND 
-year = 2010) GROUP BY semester,year ;
+SQL> SELECT COUNT(DISTINCT i.id) as TotalInstructors, i.dept_name from instructor i,teaches t WHERE 
 
-TOTALINSTRUCTORS
-----------------
-               6
+  2  i.id = t.id AND t.semester = 'Spring' AND t.year = 2010 GROUP BY dept_name;
+
+TOTALINSTRUCTORS DEPT_NAME
+---------------- --------------------
+               3 Comp. Sci.
+               1 Finance
+               1 History
+               1 Music
 
 
 8. Find the department name and average salary of the department for only
@@ -119,12 +119,64 @@ students.
 10. For each department, find the maximum salary of instructors in that
 department. You may assume that every department has at least one
 instructor.
+
+SQL> SELECT dept_name, max(salary) as MaxSalary from instructor GROUP BY dept_name;
+
+DEPT_NAME             MAXSALARY
+-------------------- ----------
+Biology                   72000
+Comp. Sci.                92000
+Elec. Eng.                80000
+Finance                   90000
+History                   62000
+Music                     40000
+Physics                   95000
+
+7 rows selected.
+
+
 11. For the student with ID 12345 (or any other value), show the total number
 of credits scored for all courses (taken by that student). Don't display the
 tot_creds value from the student table, you should use SQL aggregation on
 courses taken by the student.
+
+
+SQL> SELECT t.id,sum(c.credits) as TotalCredits from takes t, course c  WHERE id=12345
+  2  AND t.course_id = c.course_id GROUP BY t.id;
+
+ID    TOTALCREDITS
+----- ------------
+12345           14
+
+
 12. Display the total credits for each of the students, along with the ID of the
 student; don't bother about the name of the student. (Don't display the
 tot_creds value from the student table, you should use SQL aggregation on
 courses taken by the student. For students who have not registered for any
 course, tot_creds should be 0)
+                                                      
+
+SQL> SELECT t.id, sum(c.credits) as TotalCredits from takes t,course c WHERE 
+  2  t.course_id = c.course_id GROUP BY t.id;
+
+ID    TOTALCREDITS
+----- ------------
+00128            7
+12345           14
+19991            3
+23121            3
+44553            4
+45678           11
+54321            8
+55739            3
+76543            7
+76653            3
+98765            7
+
+ID    TOTALCREDITS
+----- ------------
+98988            8
+
+12 rows selected.
+                                                    
+                                                      
