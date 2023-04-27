@@ -97,8 +97,22 @@ ID    COURSE_I TITLE
   Srinivasan           CS-347
 
   7 rows selected.
-   
-   
+  
+  
+SQL> select distinct(name) from instructor where salary >some(select salary from instructor where de
+pt_name = 'Biology');
+
+NAME
+--------------------
+Brandt
+Einstein
+Gold
+Katz
+Kim
+Singh
+Wu
+
+7 rows selected.
    
    
 6. For all instructors in the university who have taught some course, find their
@@ -193,15 +207,13 @@ Biology department who have taught some course.
 
 
  
-SQL> SELECT DISTINCT i.name from instructor i,teaches t WHERE i.id = t.id AND dept_name LIKE 'Comp. Sci.' ;
+SQL> SELECT DISTINCT i.name from instructor i,teaches t WHERE i.id = t.id AND dept_name LIKE 'Biology' ;
 
 NAME
 --------------------
-Brandt
-Katz
-Srinivasan
+Crick
 
-SQL> 
+
 
 
 10. Find the set of all courses taught either in Fall 2009 or in Spring 2010, or both.
@@ -230,21 +242,24 @@ CS-319
 semester.
 
 
-SQL> SELECT t.course_id from teaches t WHERE (semester LIKE 'Fall' AND year = 2009) OR NOT (semester
- LIKE 'Spring' AND year = 2010);
+SQL> (SELECT course_id FROM teaches WHERE semester LIKE 'Fall' AND year=2009) 
+  2  MINUS (SELECT course_id FROM teaches WHERE semester LIKE 'Spring' AND year=2010);
 
 COURSE_I
 --------
-CS-101
 CS-347
 PHY-101
-BIO-101
-BIO-301
-CS-190
-CS-190
-EE-181
 
-8 rows selected.
+
+SQL> select course_id from teaches where semester='Fall' and year=2009 and course_id not in(select c
+ourse_id from teaches where semester='Spring' and year=2010);
+
+COURSE_I
+--------
+CS-347
+PHY-101
+
+
 
 12. Find the names of all students who have taken any Comp. Sci. course ever.
 (there should be no duplicate names)
