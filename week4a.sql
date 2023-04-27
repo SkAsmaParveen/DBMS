@@ -116,6 +116,16 @@ SQL> select avg(salary) as AvgSalary, dept_name from instructor GROUP BY dept_na
 students.
 
 
+SQL> select t.course_id,t.sec_id,avg(s.tot_cred) as AvgTotalCredits from student s,takes t where s
+  2  .id=t.id and year=2009 group by t.course_id,t.sec_id having count(s.id)>=2;
+
+COURSE_I SEC_ID   AVGTOTALCREDITS
+-------- -------- ---------------
+CS-101   1                     65
+CS-190   2                     43
+CS-347   1                     67
+
+
 10. For each department, find the maximum salary of instructors in that
 department. You may assume that every department has at least one
 instructor.
