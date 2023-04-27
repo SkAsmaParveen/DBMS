@@ -188,5 +188,15 @@ ID    TOTALCREDITS
 98988            8
 
 12 rows selected.
+                                                      
+                                                      SQL> select count(distinct takes.id) as TotalStudents from takes ,teaches t where takes.course_id=t
+  2  .course_id AND t.id=10101 group by t.course_id,t.sec_id;
+
+TOTALSTUDENTS
+-------------
+            6
+            2
+            2
+
                                                     
                                                       
