@@ -5,6 +5,12 @@ II.	Write nested queries for answering the following queries that retrieve data 
   
   SQL> SELECT COUNT(DISTINCT TAKES.id) as TotalStudents,TAKES.course_id FROM TAKES,TEACHES t WHERE
   2  t.course_id=takes.course_id AND t.id = 10101  GROUP BY TAKES.course_id, t.sec_id;
+  
+  TOTALSTUDENTS COURSE_I
+------------- --------
+            6 CS-101
+            2 CS-315
+            2 CS-347
 
 
 
@@ -12,6 +18,18 @@ II.	Write nested queries for answering the following queries that retrieve data 
 
   SELECT name FROM instructor WHERE salary > SOME (SELECT salary FROM instructor  WHERE dept_name = 'Biology');
 
+
+NAME
+--------------------
+Wu
+Einstein
+Gold
+Katz
+Singh
+Brandt
+Kim
+
+7 rows selected.
 
 3.	Find the departments that have the highest average salary
 
