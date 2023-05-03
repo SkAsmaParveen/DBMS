@@ -148,10 +148,50 @@ ID
 13. Find the IDs and names of all students who have not taken any course
 offering before Spring 2009.
 
+SQL> (SELECT id, name FROM student)
+  2  MINUS
+  3  (SELECT s.id, s.name FROM student s, takes t WHERE s.id=t.id AND t.year<2009);
+
+ID    NAME
+----- --------------------
+00128 Zhang
+12345 Shankar
+19991 Brandt
+23121 Chavez
+44553 Peltier
+45678 Levy
+54321 Williams
+55739 Sanchez
+70557 Snow
+76543 Brown
+76653 Aoi
+
+ID    NAME
+----- --------------------
+98765 Bourikas
+98988 Tanaka
+
+13 rows selected.
+
+
 
 14. Find the lowest, across all departments, of the per-department maximum
 salary computed.
+
+
+SQL> SELECT MIN(MaxSal) FROM(
+  2  SELECT dept_name, MAX(salary) AS MaxSal FROM instructor GROUP BY dept_name);
+
+MIN(MAXSAL)
+-----------
+      40000
+
+SQL> 
 15. Display the IDs and names of the instructors who have taught all Comp. Sci.
 courses.
+
+
+
+
   
   
