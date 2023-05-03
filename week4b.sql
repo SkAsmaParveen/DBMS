@@ -35,6 +35,9 @@ Kim
 
 SELECT dept_name from INSTRUCTOR GROUP BY dept_name HAVING avg(SALARY) >= ALL(SELECT avg(salary) as HighestAvgSalary FROM INSTRUCTOR GROUP BY dept_name); 
 
+DEPT_NAME
+--------------------
+Physics
 
 
 4.	Find all the courses taught in the both the Fall 2009 and Spring 2010 semesters
@@ -45,7 +48,13 @@ SELECT course_id from teaches WHERE SEMESTER = 'Fall' AND YEAR = 2009 AND course
 
 5.	Find all the courses taught in the Fall 2009 semester but not in the Spring 2010 semester.
   
-  SELECT course_id FROM teaches WHERE SEMESTER = 'Fall' AND YEAR = 2009 AND course_id NOT IN(SELECT course_id FROM teaches WHERE SEMESTER = 'Spring' AND YEAR = 2010);
+SQL> SELECT course_id FROM teaches WHERE SEMESTER = 'Fall' AND YEAR = 2009 AND course_id NOT IN(SELE
+CT course_id FROM teaches WHERE SEMESTER = 'Spring' AND YEAR = 2010);
+
+COURSE_I
+--------
+CS-347
+PHY-101
 
 
 
