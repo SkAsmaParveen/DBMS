@@ -45,6 +45,10 @@ Physics
 SELECT course_id from teaches WHERE SEMESTER = 'Fall' AND YEAR = 2009 AND course_id IN( SELECT course_id from teaches WHERE SEMESTER = 'Spring' AND YEAR = 2010 );
 
 
+COURSE_I
+--------
+CS-101
+
 
 5.	Find all the courses taught in the Fall 2009 semester but not in the Spring 2010 semester.
   
@@ -60,8 +64,94 @@ PHY-101
 
 6.	Find all courses taught in both the Fall 2009 semester and in the Spring 2010 semester. (Write correlated nested Query)
   
-  
+ SQL> SELECT t.course_id FROM teaches t WHERE semester='Fall' AND year=2009 AND EXISTS(
+  2      SELECT * FROM teaches s WHERE s.semester='Spring' AND s.year=2010 AND t.course_id=s.course_id);
+ 
+COURSE_I
+--------
+CS-101
+
+7. Find all students who have taken all courses offered in the Biology
+department. (Write Correlated nested Query)
+
+SQL> SELECT DISTINCT s.id FROM student s WHERE NOT EXISTS(
+  2      (SELECT course_id FROM course WHERE dept_name='Biology')
+  3      MINUS
+  4      (SELECT t.course_id FROM takes t WHERE s.id=t.id)
+  5  );
+
+no rows selected.
 
 
+8. Find all courses that were offered at most once in 2009.
+
+SELECT DISTINCT course_id FROM teaches WHERE year=2009 
+GROUP BY course_id HAVING COUNT(course_id) <= 1;
+
+COURSE_I
+--------
+BIO-101
+CS-101
+CS-347
+EE-181
+PHY-101
+
+9. Find all courses that were offered at least twice in 2009”
+
+
+SQL> SELECT DISTINCT course_id FROM teaches WHERE year=2009 
+  2   GROUP BY course_id HAVING COUNT(course_id) >= 2;
+
+COURSE_I
+--------
+CS-190
+
+10. Find the average instructors’ salaries of those departments where the
+average salary is greater than $42,000.
+
+
+SQL> SELECT dept_name, AVG(salary) AS AVG_SALARY FROM instructor 
+  2  GROUP BY dept_name HAVING AVG(salary)>42000;
+
+DEPT_NAME            AVG_SALARY
+-------------------- ----------
+Biology                   72000
+Comp. Sci.           77333.3333
+Elec. Eng.                80000
+Finance                   85000
+History                   61000
+Physics                   91000
+
+6 rows selected.
+
+11. Find the departments with the maximum budget.
+
+SQL> SELECT dept_name FROM department WHERE budget=(SELECT MAX(budget) FROM department);
+
+DEPT_NAME
+--------------------
+Finance
+
+12. Find the names of instructors who have not taught any course.
+
+
+SQL> SELECT i.id FROM instructor i WHERE NOT EXISTS(
+  2      SELECT * FROM teaches t WHERE t.id=i.id
+  3  );
+
+ID
+-----
+33456
+58583
+76543
+
+13. Find the IDs and names of all students who have not taken any course
+offering before Spring 2009.
+
+
+14. Find the lowest, across all departments, of the per-department maximum
+salary computed.
+15. Display the IDs and names of the instructors who have taught all Comp. Sci.
+courses.
   
   
