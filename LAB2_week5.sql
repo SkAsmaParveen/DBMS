@@ -86,6 +86,8 @@ June 2005 10:30.00 PM
 
 SQL> SELECT TO_CHAR(CURRENT_DATE, 'DAY DDth MONTH HH:MI:SS AM') AS "DATE-TIME" FROM DUAL;
 
+--The DUAL is special one row, one column table present by default in all Oracle databases. 
+
 SQL> select to_char(hiredate,'DAY DDth MONTH HH:MI:SS AM')  AS "DATE-TIME" FROM emp;
 
 DATE-TIME
