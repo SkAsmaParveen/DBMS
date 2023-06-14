@@ -30,5 +30,31 @@ ACCOUNTING              0
 RESEARCH                1
 SALES                   2
 OPERATIONS              1
+
+ 4. Write a query to display the department name which does not contain any employees.
+ 
+ 
+ SQL> SELECT dname FROM dept WHERE deptno NOT IN (SELECT DISTINCT deptno FROM emp);
+
+DNAME
+--------------
+OPERATIONS
+
+
+5. Write a query to display all employee details where employee was joined in year date wise
+1980 and 1990 and 2nd week of every month
+
+
+/*  TO_CHAR function is used to typecast a numeric or date input to character type with a format model   */
+            */ TO_CHAR(format,'model') */
+
+SQL> SELECT * FROM emp 
+  2  WHERE TO_CHAR(hiredate, 'YYYY/DD')  BETWEEN 1980 AND 1990
+  3  AND TO_CHAR(hiredate, 'W') = '02' ;
+
+no rows selected
+
+
+
                    
 
