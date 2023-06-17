@@ -70,7 +70,7 @@ OPERATIONS
 1980 and 1990 and 2nd week of every month
 
 
-/*  TO_CHAR function is used to typecast a numeric or date input to character type with a format model   */
+/*  It is used to convert a date from DATE value to a specified date format.   */
             */ TO_CHAR(format,'model') */
 
 SQL> SELECT * FROM emp 
@@ -84,33 +84,19 @@ no rows selected
 June 2005 10:30.00 PM
 
 
+  --TO_CHAR(expression, date_format)
+  
+SQL> select TO_CHAR(sysdate,'DAY DDth MONTH YYYY  HH:MI:SS AM') AS "DATE-TIME" FROM dual;
+
+DATE-TIME
+------------------------------------------
+SATURDAY  17TH JUNE      2023  02:33:03 PM
+
 SQL> SELECT TO_CHAR(CURRENT_DATE, 'DAY DDth MONTH HH:MI:SS AM') AS "DATE-TIME" FROM DUAL;
 
 --The DUAL is special one row, one column table present by default in all Oracle databases. 
 
-SQL> select to_char(hiredate,'DAY DDth MONTH HH:MI:SS AM')  AS "DATE-TIME" FROM emp;
-
-DATE-TIME
-------------------------------------
-WEDNESDAY 17TH DECEMBER  12:00:00 AM
-FRIDAY    20TH FEBRUARY  12:00:00 AM
-SUNDAY    22ND FEBRUARY  12:00:00 AM
-THURSDAY  02ND APRIL     12:00:00 AM
-MONDAY    28TH SEPTEMBER 12:00:00 AM
-FRIDAY    01ST MAY       12:00:00 AM
-TUESDAY   09TH JUNE      12:00:00 AM
-SUNDAY    19TH APRIL     12:00:00 AM
-TUESDAY   17TH NOVEMBER  12:00:00 AM
-TUESDAY   08TH SEPTEMBER 12:00:00 AM
-SATURDAY  23RD MAY       12:00:00 AM
-
-DATE-TIME
-------------------------------------
-THURSDAY  03RD DECEMBER  12:00:00 AM
-THURSDAY  03RD DECEMBER  12:00:00 AM
-SATURDAY  23RD JANUARY   12:00:00 AM
-
-14 rows selected.
+S
 
 
 7. Write a query to display all employee details who joined last Wednesday of a month and
