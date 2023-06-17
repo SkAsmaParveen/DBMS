@@ -142,7 +142,8 @@ BY deptno);
 6 rows selected.
 
 
-
+This function is used to measure the months between two dates.
+       MONTHS_BETWEEN(from_date, to_date)
 
 
 
