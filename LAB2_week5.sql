@@ -92,8 +92,6 @@ DATE-TIME
 ------------------------------------------
 SATURDAY  17TH JUNE      2023  02:33:03 PM
 
-SQL> SELECT TO_CHAR(CURRENT_DATE, 'DAY DDth MONTH HH:MI:SS AM') AS "DATE-TIME" FROM DUAL;
-
 --The DUAL is special one row, one column table present by default in all Oracle databases. 
 
 S
