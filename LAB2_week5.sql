@@ -75,7 +75,7 @@ OPERATIONS
 
 SQL> SELECT * FROM emp 
   2  WHERE TO_CHAR(hiredate, 'YYYY/DD')  BETWEEN 1980 AND 1990
-  3  AND TO_CHAR(hiredate, 'W') = '02' ;
+  3  AND TO_CHAR(hiredate, 'W' ,'D') = '02' '07' AND '14' ;
 
 no rows selected
 
