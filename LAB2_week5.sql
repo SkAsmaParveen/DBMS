@@ -75,7 +75,7 @@ OPERATIONS
 
 SQL> SELECT * FROM emp 
   2  WHERE TO_CHAR(hiredate, 'YYYY/DD')  BETWEEN 1980 AND 1990
-  3  AND TO_CHAR(hiredate, 'W' ,'D') = '02' '07' AND '14' ;
+  3  AND TO_CHAR(hiredate, 'W','D' ) = '02' '07' AND '14' ;
 
 no rows selected
 
@@ -103,6 +103,13 @@ experience should be greater than 20 months
 
 8. Write a query to calculate the service of employees rounded to years
 
+11. Display the time of day.
+  
+SQL> select TO_CHAR(SYSDATE,'HH:MM:SS AM') FROM dual;
+
+TO_CHAR(SYS
+-----------
+02:06:25 PM
 
 12. Find all employees who earn a salary greater than the average salary of their departments.
 
