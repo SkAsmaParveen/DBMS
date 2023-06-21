@@ -168,7 +168,21 @@ MILLER           1300 below the target
 
 10. Display all employee names, employee number, department names & salary grades for all employees who are working in department 30.*/
 
-  
+
+  SQL> SELECT e.ename, e.empno, d.dname, e.sal FROM empl e,dept d
+  2   WHERE e.deptno=30 AND e.deptno=d.deptno;
+
+ENAME           EMPNO DNAME                 SAL
+---------- ---------- -------------- ----------
+ALLEN            7499 SALES                1600
+WARD             7521 SALES                1250
+MARTIN           7654 SALES                1250
+BLAKE            7698 SALES                2850
+TURNER           7844 SALES                1500
+JAMES            7900 SALES                 950
+
+6 rows selected.
+
 11. Display the time of day.
   
 SQL> select TO_CHAR(SYSDATE,'HH:MM:SS AM') FROM dual;
