@@ -75,7 +75,7 @@ OPERATIONS
 
 SQL> SELECT * FROM emp 
   2  WHERE TO_CHAR(hiredate, 'YYYY/DD')  BETWEEN 1980 AND 1990
-  3  AND TO_CHAR(hiredate, 'W','D' ) = '02' '07' AND '14' ;
+  3  AND TO_CHAR(hiredate, 'W' ) = '02'  ;
 
 no rows selected
 
@@ -94,8 +94,6 @@ SATURDAY  17TH JUNE      2023  02:33:03 PM
 
 --The DUAL is special one row, one column table present by default in all Oracle databases. 
 
-S
-
 
 7. Write a query to display all employee details who joined last Wednesday of a month and
 experience should be greater than 20 months
@@ -103,6 +101,74 @@ experience should be greater than 20 months
 
 8. Write a query to calculate the service of employees rounded to years
 
+
+SQL> select empno,ename,job,hiredate,floor(MONTHS_BETWEEN(sysdate,hiredate)/12)
+  2  as SERVICE_IN_YEARS from empl;
+
+     EMPNO ENAME      JOB       HIREDATE  SERVICE_IN_YEARS
+---------- ---------- --------- --------- ----------------
+      7369 SMITH      CLERK     17-DEC-80               42
+      7499 ALLEN      SALESMAN  20-FEB-81               42
+      7521 WARD       SALESMAN  22-FEB-81               42
+      7566 JONES      MANAGER   02-APR-81               42
+      7654 MARTIN     SALESMAN  28-SEP-81               41
+      7698 BLAKE      MANAGER   01-MAY-81               42
+      7782 CLARK      MANAGER   09-JUN-81               42
+      7788 SCOTT      ANALYST   19-APR-87               36
+      7839 KING       PRESIDENT 17-NOV-81               41
+      7844 TURNER     SALESMAN  08-SEP-81               41
+      7876 ADAMS      CLERK     23-MAY-87               36
+
+     EMPNO ENAME      JOB       HIREDATE  SERVICE_IN_YEARS
+---------- ---------- --------- --------- ----------------
+      7900 JAMES      CLERK     03-DEC-81               41
+      7902 FORD       ANALYST   03-DEC-81               41
+      7934 MILLER     CLERK     23-JAN-82               41
+
+14 rows selected.
+
+
+9. Write a query that will display a list of employees and their salary and the comments as follows:
+      a. If the salary is more than 1500 then display “above target”
+      b. If the salary is equal to 1500 then display “on the target”
+      c. If the salary is less than 1500 then display “below the target”
+
+
+--decode(expression,search_value,result)
+
+
+SQL> SELECT ename, sal,
+  2      DECODE(SIGN(SAL-1500), 1, 'above target',
+  3                             0, 'on the target',
+  4                            -1, 'below the target') AS COMMENTS
+  5      FROM empl;
+
+ENAME             SAL COMMENTS
+---------- ---------- ----------------
+SMITH             800 below the target
+ALLEN            1600 above target
+WARD             1250 below the target
+JONES            2975 above target
+MARTIN           1250 below the target
+BLAKE            2850 above target
+CLARK            2450 above target
+SCOTT            3000 above target
+KING             5000 above target
+TURNER           1500 on the target
+ADAMS            1100 below the target
+
+ENAME             SAL COMMENTS
+---------- ---------- ----------------
+JAMES             950 below the target
+FORD             3000 above target
+MILLER           1300 below the target
+
+14 rows selected.
+
+
+10. Display all employee names, employee number, department names & salary grades for all employees who are working in department 30.*/
+
+  
 11. Display the time of day.
   
 SQL> select TO_CHAR(SYSDATE,'HH:MM:SS AM') FROM dual;
@@ -110,9 +176,9 @@ SQL> select TO_CHAR(SYSDATE,'HH:MM:SS AM') FROM dual;
 TO_CHAR(SYS
 -----------
 02:06:25 PM
+  
 
 12. Find all employees who earn a salary greater than the average salary of their departments.
-
 
 
 SQL> SELECT e.* FROM empl e WHERE e.sal > ( SELECT AVG(sal) FROM empl WHERE deptno = e.deptno GROUP 
