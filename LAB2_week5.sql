@@ -240,6 +240,48 @@ This function is used to measure the months between two dates.
        MONTHS_BETWEEN(from_date, to_date)
 
 
+13. Write a query to find the name of the manager and number of sub-ordinates.
+
+SQL>  select e.ename as "Manager" , count(*) as "No.of.Subordinates" FROM empl e,empl m  WHERE 
+  2   e.empno = m.mgr group by e.ename;
+
+Manager    No.of.Subordinates
+---------- ------------------
+BLAKE                       5
+CLARK                       1
+FORD                        1
+JONES                       2
+KING                        3
+SCOTT                       1
+
+6 rows selected.
+
+
+14. Write a query to find out the manager having Maximum number of sub-ordinates.
+
+
+SQL> SELECT e.ename, COUNT(*) AS subs FROM empl e, empl m
+  2  WHERE e.empno=m.mgr GROUP BY e.ename having count(*) in (SELECT max(count(*)) FROM empl e, empl
+ m
+  3  WHERE e.empno=m.mgr GROUP BY e.ename);
+
+ENAME            SUBS
+---------- ----------
+BLAKE               5
+
+
+15. Write a query to find out the top three earners.
+
+
+
+16. Write a query to find out the employees who have joined before their managers.
+17. Write a query to find out the year, where most people join in the company displays the year
+and No. of Employees.
+18. Write a query which will return the DAY of the week.(ie. MONDAY), for any date entered in
+the format: DD.MM.YY
+
+
+
 
 
                    
