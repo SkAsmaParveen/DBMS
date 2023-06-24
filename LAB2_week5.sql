@@ -98,7 +98,14 @@ SATURDAY  17TH JUNE      2023  02:33:03 PM
 7. Write a query to display all employee details who joined last Wednesday of a month and
 experience should be greater than 20 months
 
+SQL> SELECT * FROM empl 
+  2  WHERE (TO_CHAR(HIREDATE, 'DY')='WED' AND TO_CHAR(HIREDATE, 'MM') - TO_CHAR(NEXT_DAY(HIREDATE, '
+WEDNESDAY'), 'MM')=1)
+  3  AND MONTHS_BETWEEN(SYSDATE, HIREDATE)>20;
 
+no rows selected
+
+  
 8. Write a query to calculate the service of employees rounded to years
 
 
