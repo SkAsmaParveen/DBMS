@@ -272,13 +272,41 @@ BLAKE               5
 
 15. Write a query to find out the top three earners.
 
+SQL> select sal from empl e where 3> ( select count(*) from empl s where e.sal < s.sal );
+
+       SAL
+----------
+      3000
+      5000
+      3000
 
 
 16. Write a query to find out the employees who have joined before their managers.
+
+SQL> SELECT E.ename AS EMP_NAME FROM empl E 
+  2  WHERE EXISTS (
+  3      SELECT * FROM empl M WHERE E.mgr=M.empno AND E.HIREDATE < M.HIREDATE 
+  4  );
+
+EMP_NAME
+----------
+SMITH
+ALLEN
+WARD
+JONES
+BLAKE
+CLARK
+
+6 rows selected.
+
 17. Write a query to find out the year, where most people join in the company displays the year
 and No. of Employees.
+
+
 18. Write a query which will return the DAY of the week.(ie. MONDAY), for any date entered in
 the format: DD.MM.YY
+
+
 
 
 
