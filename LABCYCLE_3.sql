@@ -150,6 +150,29 @@ SQL> SELECT * from demo_tab;
 ---------- ---------- ---------- ----------
          2          4          2          2
 
+3.Write a PL/SQL block to read the quantity of a product from inventory and if it is > 0 reduce the quantity by 1 and 
+        record the status of purchase of that product as ‘PURCHASED’. Otherwise 
+        record the status of purchase of that product as ‘OUT OF STOCK’. While recording the status of a purchase, record the date of transaction.
+
+
+declare
+
+id Inventorty.ProductId%type := &id;
+quan Inventorty.Quantity%type;
+
+begin
+
+select Quantity into quan from InventorTy where ProductId = id;
+if quan > 0 then
+update Inventorty set Quantity = Quantity-1 where ProductId = id;
+
+insert into PurchaseRecord values(id,'Purchased',sysdate);
+else
+
+insert into PurchaseRecord values(id,'OutOfStock',sysdate);
+
+end if;
+end;
 
 SQL> create table Inventorty (ProductId number,
   2  ProductName varchar(10),
@@ -215,6 +238,78 @@ SQL> select * from PurchaseRecord;
  PRODUCTID STATUS     TRANSACDA
 ---------- ---------- ---------
       1234 Purchased  01-JUL-23
+
+
+4.Write a PL/SQL block to handle the following built-in exceptions
+no_data_found
+too_many_rows
+zero_divide
+
+--CREATE EMPLOYEE TABLE BEFORE HAND
+   
+SQL> create table employee( Name varchar(10), Dno numeric(4,0),
+  2  Ssn varchar(10) primary key,
+  3  Dname varchar(10) );
+
+Table created.
+
+SQL> insert into employee values('Asma',100,1234,'CSE');
+
+1 row created.
+
+SQL> insert into employee values('Salma',101,5678,'CSE');
+
+1 row created.
+declare 
+
+s employee.Ssn%type;
+m number := 10;
+n number;
+
+
+
+begin
+  
+-- n := m/0;
+--select ssn into s from employee;
+select ssn into s from employee where dno = 10;
+
+exception
+when too_many_rows then
+dbms_output.put_line('Too manyrows where only1 isexpected');
+
+when zero_divide then
+dbms_output.put_line('Trying to divide by Zero!');
+
+when no_data_found then
+dbms_output.put_line('No department is found!');
+
+end;
+
+OUTPUT:
+  
+SQL>  @D:\PLSQL\EH.SQL
+ 26  /
+Too manyrows where only1 isexpected
+PL/SQL procedure successfully completed.
+
+  
+SQL> @D:\PLSQL\EH.SQL
+ 25  /
+Trying to divide by Zero!
+PL/SQL procedure successfully completed.
+
+  
+SQL>  @D:\PLSQL\EH.SQL
+ 26  /
+No department is found!
+PL/SQL procedure successfully completed.
+
+  
+
+
+
+  
 
 
 
