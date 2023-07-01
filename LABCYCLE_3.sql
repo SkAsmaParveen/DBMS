@@ -306,6 +306,9 @@ No department is found!
 PL/SQL procedure successfully completed.
 
   
+5 .Write a PL/SQL block to check whether the quantity of any product in Inventory table of problem 3 
+  is < 0. If so, using an exception display relevant message and update quantity to 0.
+
 
 
 
