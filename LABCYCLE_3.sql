@@ -151,3 +151,70 @@ SQL> SELECT * from demo_tab;
          2          4          2          2
 
 
+SQL> create table Inventorty (ProductId number,
+  2  ProductName varchar(10),
+  3  Quantity numeric(4,0),
+  4  primary key(ProductId));
+
+Table created.
+
+SQL> insert into Inventorty values(1234,'Scrubber',3);
+
+1 row created.
+
+SQL> insert into Inventorty values(5678,'Doormat',4);
+
+1 row created.
+
+SQL> insert into Inventorty values(9101,'Curtain',5);
+
+1 row created.
+
+
+SQL> insert into Inventorty values(5678,'Doormat',4);
+
+1 row created.
+
+  SQL> create table PurchaseRecord( ProductId number,
+  2  Status varchar(10),
+  3  TransacDate date,
+  4   foreign key(ProductId) references Inventorty );
+
+Table created.
+
+
+OUTPUT:
+
+SQL> select * from Inventorty;
+
+PRODUCTID  PRODUCTNAM   QUANTITY
+---------- ---------- ----------
+1234       Scrubber            3
+5678       Doormat             4
+9101       Curtain             5
+
+
+SQL>  @D:\PLSQL\INVEN.SQL
+ 21  /
+Enter value for id: 1234
+old   3: id Inventorty.ProductId%type := &id;
+new   3: id Inventorty.ProductId%type := 1234;
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from Inventorty;
+
+ PRODUCTID PRODUCTNAM   QUANTITY
+---------- ---------- ----------
+      1234 Scrubber            2
+      5678 Doormat             4
+      9101 Curtain             5
+   
+SQL> select * from PurchaseRecord;
+
+ PRODUCTID STATUS     TRANSACDA
+---------- ---------- ---------
+      1234 Purchased  01-JUL-23
+
+
+
