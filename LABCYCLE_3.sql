@@ -16,6 +16,26 @@ end loop;
 
 end;
 
+OUTPUT:
+  SQL> @D:\PLSQL
+SP2-0310: unable to open file "D:\PLSQL.sql"
+SQL> @D:\PLSQL\MULTIPLY.SQL
+ 14  /
+Enter value for n: 3
+old   6: n:=&n;
+new   6: n:=3;
+3*1=3
+3*2=6
+3*3=9
+3*4=12
+3*5=15
+3*6=18
+3*7=21
+3*8=24
+3*9=27
+3*10=30
+
+PL/SQL procedure successfully completed.
 
 b.Read a number and check whether it is a palindrome or not
 
